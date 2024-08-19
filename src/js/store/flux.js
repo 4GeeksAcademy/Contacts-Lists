@@ -1,6 +1,10 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+
+			listContact : [
+
+			],
 			demo: [
 				{
 					title: "FIRST",
@@ -12,6 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
+
+
 			]
 		},
 		actions: {
@@ -19,6 +25,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			loadContacts: async () => {
+				const ContactsAttract = await fetch("https://playground.4geeks.com/contact/agendas/agendaCesar",{ 
+					method: 'GET'
+				})
+
+				const data = await ContactsAttract.json()
+				setStore({
+					listContact: data.contacts
+				})
+			},
+
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
