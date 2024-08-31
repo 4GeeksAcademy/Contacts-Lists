@@ -14,7 +14,7 @@ export const Home = () => {
 		<div className="text-center mt-5">
 			<div className="container">
 
-				{store.listContact.map((item, index) => {
+				{store.listContact && store.listContact.map((item, index) => {
 					return (
 						<Contact
 						

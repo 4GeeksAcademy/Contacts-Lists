@@ -21,17 +21,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 
 			loadContacts: async () => {
-				const ContactsAttract = await fetch("https://playground.4geeks.com/contact/agendas/agendaCesar",{ 
+				const contactsAttract = await fetch("https://playground.4geeks.com/contact/agendas/agendasCesar",{ 
 					method: 'GET'
 				})
 
-				const data = await ContactsAttract.json()
+				const data = await contactsAttract.json()
 				setStore({
 					listContact: data.contacts
 				})
@@ -40,7 +39,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			loadSomeData: () => {
 				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
 			},
 			changeColor: (index, color) => {
