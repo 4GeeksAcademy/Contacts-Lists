@@ -1,6 +1,6 @@
 import React from "react";
 
-const NewContactnew = () => {
+const NewContact = () => {
 
     return (
         <div className="container justify-content-center">
@@ -26,4 +26,4 @@ const NewContactnew = () => {
 
 }
 
-export default NewContactnew;
+export default NewContact;
