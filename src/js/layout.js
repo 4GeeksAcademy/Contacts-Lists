@@ -1,3 +1,4 @@
+import EditContact from "./views/editcontact";
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
@@ -28,6 +29,7 @@ const Layout = () => {
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 						<Route path="/newContact" element={<NewContact/>}/>
+						<Route path="/editcontact" element={<EditContact/>}/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

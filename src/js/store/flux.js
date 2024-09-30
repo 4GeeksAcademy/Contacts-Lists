@@ -2,7 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 
-			listContact : [
+			listContact: [
 
 			],
 			demo: [
@@ -26,7 +26,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			loadContacts: async () => {
-				const contactsAttract = await fetch("https://playground.4geeks.com/contact/agendas/agendasCesar",{ 
+				const contactsAttract = await fetch("https://playground.4geeks.com/contact/agendas/cesar", {
 					method: 'GET'
 				})
 
@@ -34,6 +34,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({
 					listContact: data.contacts
 				})
+			},
+
+			deleteContact: async (id) => {
+				const response = await fetch(`https://playground.4geeks.com/contact/agendas/cesar/contacts/${id}`, {
+					method: 'DELETE'
+				});
+
+				if (response.ok) {
+					const store = getStore();
+					const updatedContacts = store.listContact.filter(contact => contact.id !== id);
+					setStore({ listContact: updatedContacts });
+				} else {
+					console.error("Failed to delete contact");
+				}
+			},
+
+			editContact: async (updatedContacts, id) => {
+				const response = await fetch(`https://playground.4geeks.com/contact/agendas/cesar/contacts/${id}`, {
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(updatedContacts)
+				});
+
+				if (response.ok) {
+					const store = getStore();
+					const updatedList = store.listContact.map(contact => {
+						if (contact.id === id) {
+							return updatedContacts;
+						}
+						return contact;
+					});
+					setStore({ listContact: updatedList });
+				}
 			},
 
 
